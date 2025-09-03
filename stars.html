@@ -1,0 +1,284 @@
+
+ <style>
+
+
+
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      overflow-x: hidden;
+      font-family: 'Avenir', sans-serif;
+    }
+
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: -2;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: twinkle 2s infinite ease-in-out, parallaxMove 20s linear infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    @keyframes parallaxMove {
+      0% { transform: translateZ(0px); }
+      100% { transform: translateZ(100px); }
+    }
+
+    .content {
+      padding: 100vh 10% 100vh 10%;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+
+.line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.line.gone {
+  opacity: 0;
+  transform: translateY(-40px);
+}
+
+
+        .line {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.5s ease, text-shadow 0.4s ease, transform 0.4s ease;
+  margin-bottom: 2em;
+  font-size: 1.5em;
+  line-height: 2em;
+  display: inline-block; /* para que el hover se sienta más preciso */
+}
+
+
+
+.line:hover {
+cursor: context-menu;
+  color: #fff;
+  text-shadow: 0 0 8px #fff,
+               0 0 16px #ffddaa,
+               0 0 32px #ffcc88;
+
+}
+
+
+  </style>
+
+
+  <canvas id="particles"></canvas>
+  <div class="starfield" id="stars"></div>
+
+  <div class="content" id="poem">
+    <div class="line">A veces las cosas nos miran</div><br>
+    <div class="line">y nos piden darse a la fuga,</div><br>
+    <div class="line">abrir una grieta</div><br>
+    <div class="line">Bajamos a la reserva y escuchamos los cantos</div><br>
+    <div class="line">de la madera, la piel carcomida,</div><br>
+    <div class="line">la entretela, el papel rugoso. </div><br>
+    <div class="line"><br></div><br>
+    <div class="line">Eran 1800 objetos. </div><br>
+    <div class="line">Pero estos que están aquí</div><br>
+    <div class="line">fueron los que alzaron su voz, </div><br>
+    <div class="line">o los que susurraron, rompiéndonos por dentro,</div><br>
+    <div class="line">desbordándose</div><br>
+    <div class="line">en esta oficina de detectives para componer</div><br>
+    <div class="line">una constelación.</div><br>
+    <div class="line"><br></div><br>
+    <div class="line">¿Cómo se habita una constelación? </div><br>
+    <div class="line"><br></div><br>
+    <div class="line">Trajimos objetos que vienen de afuera a dar</div><br>
+    <div class="line">respiración lenta de boca a boca</div><br>
+    <div class="line">a bienes que habían extraviado su casa,</div><br>
+    <div class="line">su nombre,</div><br>
+    <div class="line">su posesión íntima, </div><br>
+    <div class="line">una pérdida que los entierra en los fondos fríos </div><br>
+    <div class="line">de lo que paradójicamente no se quiere dejar morir</div><br>
+    <div class="line"><br></div><br>
+    <div class="line">¿Por qué no dejamos morir a las cosas? </div><br>
+    <div class="line">¿Por qué hacemos hospitales de infinito para ellas? </div><br>
+            <div class="line"><br></div><br>
+    <div class="line">Que los objetos protesten.</div><br>
+        <div class="line"><br></div><br>
+    <div class="line">¿Cómo sublevar una colección? </div><br>
+    <div class="line">¿Cómo recomponer sus silencios? </div><br>
+     <div class="line"><br></div><br>
+    <div class="line">La piel de estas cosas es un testigo veterano</div><br>
+    <div class="line">transpira sueños y veredictos,</div><br>
+    <div class="line">umbrales por los que reviven ausentes. </div><br>
+    <div class="line">Son como el paisaje que los observa a lo lejos</div><br>
+    <div class="line">objetos volcánicos, </div><br>
+    <div class="line">siempre a punto de estallar. </div><br>
+    <div class="line"><br></div><br>
+    <div class="line">Mientras construimos la memoria, la fuimos deshilando. </div><br>
+     <div class="line">Archivos que respiran</div><br>
+     <div class="line">cuerpos que se alían a reclamos guardados en lo remoto</div><br>
+     <div class="line">para fracturar la ordenación en siglos.</div><br>
+     <div class="line">Esta es una oficina de siglos rotos,</div><br>
+      <div class="line">desacomodados</div><br>
+     <div class="line">las cosas viven con destiempo</div><br>
+      <div class="line">son fantasmas que dejan de ser fantasmas</div><br>
+     <div class="line">y forman una sociedad</div><br>
+     <div class="line">de fortaleza transparente. </div><br>
+     <div class="line"><br></div><br>
+     <div class="line">Las oficinas de detectives </div><br>
+     <div class="line">son hojas en las que se escriben denuncias materiales,</div><br>
+     <div class="line">rebeldías de bienes que</div><br>
+     <div class="line">quieren volver a sus comunidades,</div><br>
+     <div class="line">ver la noche</div><br>
+     <div class="line">y sobre todo ver de nuevo la luz de los días,</div><br>
+     <div class="line">las lluvias y los soles.</div><br>
+     <div class="line"><br></div><br>
+     <div class="line">Esta oficina es un vientre posible para una reserva viva,</div><br>
+     <div class="line">que no niega su malestar por aquello que no se tiene,</div><br>
+     <div class="line">por las ciudades invisibles que planean como ecos</div><br>
+     <div class="line">entre contornos y estanterías,</div><br>
+     <div class="line">allá abajo, </div><br>
+     <div class="line">en la puerta otra que se cierra bajo llave. </div><br>
+     <div class="line"><br></div><br>
+     <div class="line"><br></div><br>
+    <div class="line">~ Shaday Larios</div>
+  </div>
+
+  <script>
+
+
+
+
+
+
+
+
+    // Estrellas
+    const starContainer = document.getElementById('stars');
+    const numStars = 200;
+
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+      star.style.transform = `translateZ(${Math.random() * 200 - 100}px)`;
+      starContainer.appendChild(star);
+    }
+
+    // Scroll efecto poema
+    const lines = document.querySelectorAll('.line');
+    function checkVisibility() {
+      const triggerBottom = window.innerHeight * 0.85;
+      const triggerTop = window.innerHeight * 0.1;
+
+      lines.forEach(line => {
+        const lineTop = line.getBoundingClientRect().top;
+
+        if (lineTop < triggerBottom && lineTop > triggerTop) {
+          line.classList.add('visible');
+          line.classList.remove('gone');
+        } else if (lineTop <= triggerTop) {
+          line.classList.remove('visible');
+          line.classList.add('gone');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkVisibility);
+    window.addEventListener('load', checkVisibility);
+
+    // Partículas
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    const numParticles = 100;
+    const maxDistance = 120;
+
+    for (let i = 0; i < numParticles; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5,
+        radius: 1.5
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < numParticles; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        ctx.fill();
+
+        for (let j = i + 1; j < numParticles; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDistance) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(255,255,255,${1 - dist / maxDistance})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+
+    
+  </script>
+
